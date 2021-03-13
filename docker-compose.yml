@@ -1,0 +1,15 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+  # accessing via PGPASSWORD=example psql -w -p 5432 -h localhost -U postgres -d postgres
+  # in test:
+  #   PGPASSWORD=example psql -c 'create database sqlxtest;' -U postgres -h localhost
+  #   PGPASSWORD=example SQLX_POSTGRES_DSN=postgres://postgres:@localhost/sqlxtest?sslmode=disable go test
+  postgres:
+    image: postgres:13
+    ports:
+     - 5432:5432
+    environment:
+      POSTGRES_DATABASE: sqlxtest
+      POSTGRES_PASSWORD: example
